@@ -36,6 +36,7 @@ public class TaskController {
         TaskDto taskDto = new TaskDto();
         model.addAttribute(taskDto);
         return "task-form";
+
     }
     @RequestMapping(value = "/new-task", method = RequestMethod.POST)
     public String receiveTaskForm(@ModelAttribute("taskDto") TaskDto taskDto) {

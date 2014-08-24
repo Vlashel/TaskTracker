@@ -4,6 +4,7 @@ import com.vlashel.tasktracker.dao.RoleDao;
 import com.vlashel.tasktracker.dao.UserDao;
 import com.vlashel.tasktracker.dto.UserDto;
 import com.vlashel.tasktracker.model.User;
+import com.vlashel.tasktracker.service.PasswordEncoderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,9 @@ public class RegistrationController {
     @Autowired
     private RoleDao roleDao;
 
+    @Autowired
+    private PasswordEncoderService passwordEncoderService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String showForm(Model model) {
         UserDto userDto = new UserDto();
@@ -39,7 +43,7 @@ public class RegistrationController {
         User user = new User();
 
         user.setName(userDto.getName());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoderService.encodePassword(userDto.getPassword()));
         user.addRole(roleDao.getByName("ROLE_USER"));
 
         userDao.createUser(user);
