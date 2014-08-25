@@ -1,7 +1,6 @@
 package com.vlashel.tasktracker.controller;
 
 import com.vlashel.tasktracker.dao.TaskDao;
-import com.vlashel.tasktracker.dao.UserDao;
 import com.vlashel.tasktracker.dto.TaskDto;
 import com.vlashel.tasktracker.model.Task;
 import com.vlashel.tasktracker.model.User;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +29,6 @@ public class TaskController {
     private TaskDao taskDao;
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserDao userDao;
 
     @RequestMapping(value = "/new-task", method = RequestMethod.GET)
     public String getTaskForm(Model model) {
@@ -56,8 +54,6 @@ public class TaskController {
         task.setDescription(taskDto.getDescription());
         task.setUser(user);
         taskDao.createTask(task);
-        user.addTask(task);
-        userDao.updateUser(user);
 
         return "redirect:/task-list";
     }
@@ -68,30 +64,38 @@ public class TaskController {
         Long id = userService.getCurrentUser().getId();
         List<Task> taskList = taskDao.getAllTasks(id);
 
-
-
         model.addAttribute("taskList", taskList);
         return "task-list";
 
     }
 
-    @RequestMapping(value = "/delete-task/{id}")
+    @RequestMapping(value = "/delete-task/{id}", method = RequestMethod.GET)
     public String deleteTask(@PathVariable Long id) {
 
         taskDao.deleteTask(id);
 
         return "redirect:/task-list";
     }
+    @RequestMapping(value = "/finish-task/{id}", method = RequestMethod.GET)
+    public String updateFinishedTask(@PathVariable Long id) {
+
+        Task task = taskDao.getTask(id);
+
+        task.setFinishedDate(new Date());
+
+        taskDao.updateTask(task);
+
+        return "redirect:/task-list";
+    }
 
 
-    @RequestMapping(value = "/task", method = RequestMethod.GET)
+    @RequestMapping(value = "/task/{id}", method = RequestMethod.GET)
     public String getTask(@PathVariable Long id, Model model) {
 
-        List<Task> taskList = taskDao.getAllTasks(id);
+        Task task = taskDao.getTask(id);
 
-
-        model.addAttribute("taskList", taskList);
-        return "task";
+        model.addAttribute("task", task);
+        return "task-view";
 
     }
 }

@@ -35,4 +35,14 @@
         <put-attribute name="body" value="/WEB-INF/views/task-list.jsp"/>
     </definition>
 
+    <definition name="task-view" extends="defaultTemplate">
+        <put-attribute name="title" value="Your task"/>
+        <put-attribute name="body" value="/WEB-INF/views/task-view.jsp"/>
+    </definition>
+
+    <definition name="admin" extends="defaultTemplate">
+        <put-attribute name="title" value="Admin page"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin.jsp"/>
+    </definition>
+
 </tiles-definitions>

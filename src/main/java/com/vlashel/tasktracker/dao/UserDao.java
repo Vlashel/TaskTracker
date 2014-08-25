@@ -2,6 +2,8 @@ package com.vlashel.tasktracker.dao;
 
 import com.vlashel.tasktracker.model.User;
 
+import java.util.List;
+
 /**
  * @author Vladyslav Shelest
  * @version 1.0
@@ -17,4 +19,6 @@ public interface UserDao {
     void createUser(User user);
 
     void deleteUser(Long id);
+
+    List<User> getAllUsers();
 }

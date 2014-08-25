@@ -1,5 +1,8 @@
 package com.vlashel.tasktracker.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +21,10 @@ public class User {
     @Column(nullable = false)
     private final Date registrationDate = new Date();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user" , fetch = FetchType.EAGER)
+
+    @Fetch(FetchMode.SUBSELECT)
     private List<Task> tasks = new ArrayList<Task>();
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="user_roles",
             joinColumns={@JoinColumn(name="userId", referencedColumnName="id")},

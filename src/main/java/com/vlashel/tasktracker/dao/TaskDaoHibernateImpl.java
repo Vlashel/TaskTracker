@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,9 +27,9 @@ public class TaskDaoHibernateImpl implements TaskDao {
 	}
 
 	@Override
-	public void updateTask(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void updateTask(Task task) {
+		Session session = sessionFactory.getCurrentSession();
+        session.update(task);
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class TaskDaoHibernateImpl implements TaskDao {
 
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Task.class);
+        criteria.addOrder(Order.desc("createdDate"));
         Criteria userCriteria = criteria.createCriteria("user");
         userCriteria.add(Restrictions.eq("id", id));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);

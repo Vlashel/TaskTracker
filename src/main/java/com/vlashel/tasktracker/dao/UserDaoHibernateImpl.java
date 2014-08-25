@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 
 /**
@@ -49,7 +50,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void deleteUser(Long id) {
         Session session = sessionFactory.getCurrentSession();
 
-        String hql = "DELETE FROM users where id = :id";
+        String hql = "DELETE FROM User where id = :id";
 
         Query query = session.createQuery(hql);
 
@@ -66,5 +67,12 @@ public class UserDaoHibernateImpl implements UserDao {
         criteria.add(Restrictions.eq("name", name));
 
         return (User) criteria.uniqueResult();
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(User.class);
+        return (List<User>) criteria.list();
     }
 }

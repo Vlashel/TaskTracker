@@ -21,9 +21,13 @@
             </sec:authorize>
         </div>
 
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <a class="navbar-text" href="/admin">Admin panel</a>
+        </sec:authorize>
 
 
         <sec:authorize access="isAuthenticated()">
+
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout"> Logout </a></li>
