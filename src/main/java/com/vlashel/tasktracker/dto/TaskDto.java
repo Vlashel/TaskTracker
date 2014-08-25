@@ -1,5 +1,8 @@
 package com.vlashel.tasktracker.dto;
 
+
+import com.vlashel.tasktracker.model.Task;
+
 /**
  * @author Vladyslav Shelest
  * @version 1.0
@@ -7,24 +10,24 @@ package com.vlashel.tasktracker.dto;
  */
 public class TaskDto {
 
-    private String type;
-    private String name;
+    private Task.Type type;
+    private String title;
     private String description;
 
-    public String getType() {
+    public Task.Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Task.Type type) {
         this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +35,14 @@ public class TaskController {
     @RequestMapping(value = "/new-task", method = RequestMethod.GET)
     public String getTaskForm(Model model) {
         TaskDto taskDto = new TaskDto();
+        List<Task.Type> options = new ArrayList<>();
+
+        for (Task.Type type : Task.Type.values()) {
+            options.add(type);
+        }
+
+        model.addAttribute("options", options);
+
         model.addAttribute(taskDto);
         return "task-form";
 
@@ -42,8 +51,8 @@ public class TaskController {
     public String receiveTaskForm(@ModelAttribute("taskDto") TaskDto taskDto) {
         User user = userService.getCurrentUser();
         Task task = new Task();
-        task.setName(taskDto.getName());
-        task.setType(taskDto.getType());
+        task.setTitle(taskDto.getTitle());
+        task.setType(taskDto.getType().toString());
         task.setDescription(taskDto.getDescription());
         task.setUser(user);
         taskDao.createTask(task);
@@ -65,6 +74,15 @@ public class TaskController {
         return "task-list";
 
     }
+
+    @RequestMapping(value = "/delete-task/{id}")
+    public String deleteTask(@PathVariable Long id) {
+
+        taskDao.deleteTask(id);
+
+        return "redirect:/task-list";
+    }
+
 
     @RequestMapping(value = "/task", method = RequestMethod.GET)
     public String getTask(@PathVariable Long id, Model model) {

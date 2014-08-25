@@ -13,39 +13,33 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" pageEncoding="UTF-8" %>
-<html>
-<head>
-    <title>Registration form</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Creating new task</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-</head>
-<body>
 <div class="container">
-<form:form action="/registration" modelAttribute="userDto" method="POST"  cssClass="form-signin">
-<h1>Registration:</h1>
-    <div class="form-group">
-        <div class="col-lg-4 col-md-4 col-sm-5">
-            <form:input path="name" placeholder="Name" cssClass="form-control"/><br/>
-            <form:input path="password" placeholder="Password" cssClass="form-control"/><br/>
-            <form:button class="btn btn-primary">Submit</form:button><br/>
+    <form:form method="post" action="/registration" modelAttribute="userDto" cssClass="form-signin">
+        <legend class="text-info">Type login and password</legend>
+
+        <div>
+            <label class="col-sm-2 control-label">
+                Login:
+            </label>
+
+            <div>
+                <form:input path="name" cssClass="form-control"/>
+            </div>
+            <label class="col-sm-2 control-label">
+                Password:
+            </label>
+
+            <div>
+                <form:password path="password" cssClass="form-control"/>
+            </div>
+
         </div>
-    </div>
-</form:form>
+
+        <div>
+            <input type="submit" class="btn-sm btn-primary btn-block" value="Ok"/>
+        </div>
+    </form:form>
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-</body>
-</html>
+

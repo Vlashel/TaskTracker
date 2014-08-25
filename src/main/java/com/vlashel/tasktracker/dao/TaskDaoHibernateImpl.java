@@ -2,6 +2,7 @@ package com.vlashel.tasktracker.dao;
 
 import com.vlashel.tasktracker.model.Task;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -37,8 +38,15 @@ public class TaskDaoHibernateImpl implements TaskDao {
 
 	@Override
 	public void deleteTask(Long id) {
-		// TODO Auto-generated method stub
-		
+        Session session = sessionFactory.getCurrentSession();
+
+        String hql = "DELETE FROM Task WHERE id = :id";
+
+        Query query = session.createQuery(hql);
+
+        query.setLong("id", id);
+
+        query.executeUpdate();
 	}
 
     @Override

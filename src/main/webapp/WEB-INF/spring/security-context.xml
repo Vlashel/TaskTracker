@@ -12,13 +12,14 @@
         <intercept-url pattern="/" access="permitAll"/>
             <intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
         <intercept-url pattern="/loginfailed" access="hasRole('ROLE_ANONYMOUS')"/>
+
         <intercept-url pattern="/new-task" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/task" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/task-list" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/task-list" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 
         <form-login login-page="/login"
                     authentication-failure-url="/loginfailed"
-                    default-target-url="/"/>
+                    default-target-url="/task-list"/>
         <logout logout-success-url="/" logout-url="/logout"/>
     </http>
 

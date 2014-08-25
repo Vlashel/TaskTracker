@@ -2,12 +2,15 @@ package com.vlashel.tasktracker.dao;
 
 import com.vlashel.tasktracker.model.User;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 /**
  * @author Vladyslav Shelest
@@ -44,7 +47,15 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void deleteUser(Long id) {
+        Session session = sessionFactory.getCurrentSession();
 
+        String hql = "DELETE FROM users where id = :id";
+
+        Query query = session.createQuery(hql);
+
+        query.setLong("id", id);
+
+        query.executeUpdate();
     }
 
     @Override

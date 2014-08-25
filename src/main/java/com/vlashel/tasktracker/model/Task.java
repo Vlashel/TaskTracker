@@ -1,18 +1,25 @@
 package com.vlashel.tasktracker.model;
 
+
+
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "tasks")
+
 public class Task {
     @Id
     @GeneratedValue
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
-    private String name;
+
+    private String title;
+
     private String type;
+
     private String description;
     private final Date createdDate = new Date();
     private Date finishedDate;
@@ -33,12 +40,12 @@ public class Task {
         this.user = user;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getType() {
@@ -72,11 +79,18 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "name='" + name + '\'' +
+                "title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", createdDate=" + createdDate +
                 ", finishedDate=" + finishedDate +
                 '}';
     }
+
+    public enum Type {
+        Adventure, Holiday, Relationship, Work, Goal, Meeting, Other
+    }
+
 }
+
+
