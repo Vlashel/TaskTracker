@@ -58,7 +58,6 @@ public class TaskRestController {
             restTaskDto.setUserId(task.getUser().getId());
 
             restTaskDtoList.add(restTaskDto);
-
         }
 
 

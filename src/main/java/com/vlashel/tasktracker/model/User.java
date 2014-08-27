@@ -21,7 +21,6 @@ public class User {
     @Column(nullable = false)
     private final Date registrationDate = new Date();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user" , fetch = FetchType.EAGER)
-
     @Fetch(FetchMode.SUBSELECT)
     private List<Task> tasks = new ArrayList<Task>();
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -86,5 +85,21 @@ public class User {
 
     public void addTask(Task task) {
         this.tasks.add(task);
+    }
+
+    public String toString() {
+        return this.getName();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        User user  = (User) obj;
+
+        if (this.getId().equals(user.getId())) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -12,7 +12,7 @@
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
         <intercept-url pattern="/loginfailed" access="hasRole('ROLE_ANONYMOUS')"/>
-        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
         <intercept-url pattern="/new-task" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/task" access="hasRole('ROLE_USER')"/>

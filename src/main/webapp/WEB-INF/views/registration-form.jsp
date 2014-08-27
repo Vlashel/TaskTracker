@@ -17,7 +17,7 @@
 
 <div class="container">
     <form:form method="post" action="/registration" modelAttribute="userDto" cssClass="form-signin">
-        <legend class="text-info">Type login and password</legend>
+        <legend class="text-info">Registration:</legend>
 
         <div>
             <label class="col-sm-2 control-label">

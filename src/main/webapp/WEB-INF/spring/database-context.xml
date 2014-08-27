@@ -26,6 +26,13 @@
                   value="jdbc:mysql://localhost:3306/TaskTrackerDB"/>
         <property name="username" value="root"/>
 
+       <!-- <property name="url"
+                  value="jdbc:mysql://127.2.8.130:3306/tasktracker"/>
+        <property name="username" value="adminJkKqdYU"/>
+        <property name="password" value="jpEEqM5YfGmu"/>-->
+
+
+
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

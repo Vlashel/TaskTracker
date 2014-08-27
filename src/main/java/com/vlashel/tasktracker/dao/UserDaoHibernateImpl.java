@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -73,6 +76,9 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
+
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
         return (List<User>) criteria.list();
     }
 }

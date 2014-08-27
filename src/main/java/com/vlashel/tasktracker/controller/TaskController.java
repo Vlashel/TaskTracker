@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Vladyslav Shelest
@@ -58,10 +59,16 @@ public class TaskController {
         return "redirect:/task-list";
     }
 
-    @RequestMapping(value = "/task-list", method = RequestMethod.GET)
+    @RequestMapping(value = {"/task-list", "/"}, method = RequestMethod.GET)
     public String getTaskList(Model model) {
 
-        Long id = userService.getCurrentUser().getId();
+        User user = userService.getCurrentUser();
+
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        Long id = user.getId();
         List<Task> taskList = taskDao.getAllTasks(id);
 
         model.addAttribute("taskList", taskList);
@@ -72,30 +79,46 @@ public class TaskController {
     @RequestMapping(value = "/delete-task/{id}", method = RequestMethod.GET)
     public String deleteTask(@PathVariable Long id) {
 
-        taskDao.deleteTask(id);
+        User user = userService.getCurrentUser();
+
+        Task task = taskDao.getTask(id);
+
+        if (user.getTasks().contains(task)) {
+            taskDao.deleteTask(id);
+        }
 
         return "redirect:/task-list";
     }
     @RequestMapping(value = "/finish-task/{id}", method = RequestMethod.GET)
     public String updateFinishedTask(@PathVariable Long id) {
 
+        User user = userService.getCurrentUser();
+
         Task task = taskDao.getTask(id);
 
-        task.setFinishedDate(new Date());
+        if (user.getTasks().contains(task)) {
 
-        taskDao.updateTask(task);
+            task.setFinishedDate(new Date());
+
+            taskDao.updateTask(task);
+        }
 
         return "redirect:/task-list";
     }
 
 
-    @RequestMapping(value = "/task/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/task/{id}", method =  RequestMethod.GET)
     public String getTask(@PathVariable Long id, Model model) {
+
+        User user = userService.getCurrentUser();
 
         Task task = taskDao.getTask(id);
 
-        model.addAttribute("task", task);
-        return "task-view";
-
+        if (user.getTasks().contains(task)) {
+            model.addAttribute("task", task);
+            return "task-view";
+        } else {
+            return "redirect:/task-list";
+        }
     }
 }

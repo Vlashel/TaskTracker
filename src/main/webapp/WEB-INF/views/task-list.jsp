@@ -59,16 +59,18 @@
 
                         <td>
 
+
+
                             <spring:url value="/finish-task/${task.id}" var="finishUrl"/>
 
                             <c:choose>
 
                                 <c:when test="${task.finishedDate ne null}">
-                                    <a href="${finishUrl}" class="btn btn-warning disabled" role="button">Finished</a>
+                                    <a href="${finishUrl}" class="btn btn-success disabled" role="button">Finished</a>
                                 </c:when>
 
                                 <c:otherwise>
-                                    <a href="${finishUrl}" class="btn btn-success " role="button">Finish</a>
+                                    <a href="${finishUrl}" class="btn btn-warning " role="button">Finish</a>
                                 </c:otherwise>
 
                             </c:choose>

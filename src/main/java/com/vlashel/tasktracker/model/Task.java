@@ -87,6 +87,47 @@ public class Task {
                 '}';
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Task task = (Task) obj;
+
+        if (task.getId() != this.getId()){
+            return false;
+        }
+/*
+        if (task.getTitle() != this.getTitle()) {
+            return false;
+        }
+
+        if (task.getDescription() != this.getDescription()) {
+            return false;
+        }
+
+        if (task.getCreatedDate() != this.getCreatedDate()) {
+            return false;
+        }
+
+        if (task.getFinishedDate() != this.getFinishedDate()) {
+            return false;
+        }*/
+
+
+        return true;
+    }
+
     public enum Type {
         Adventure, Holiday, Relationship, Work, Goal, Meeting, Other
     }

@@ -27,7 +27,7 @@
 
                         <td>
 
-                            <spring:url value="/delete-user/${user.id}" var="deleteUrl"/>
+                            <spring:url value="admin/delete-user/${user.id}" var="deleteUrl"/>
 
                             <a href="${deleteUrl}" class="btn btn-danger " role="button">Delete</a>
 

@@ -2,6 +2,7 @@ package com.vlashel.tasktracker.controller;
 
 import com.vlashel.tasktracker.dao.UserDao;
 import com.vlashel.tasktracker.model.User;
+import com.vlashel.tasktracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,13 @@ import java.util.List;
  * @since 25.08.2014
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class AdminController {
 
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(value = "/admin" , method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String getUsers(Model model) {
 
         List<User> userList = userDao.getAllUsers();

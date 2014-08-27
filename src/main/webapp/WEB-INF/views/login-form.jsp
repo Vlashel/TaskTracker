@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
-
 <div id="login" class="container">
 
     <form:form method="post" action="j_spring_security_check" cssClass="form-signin">
@@ -34,7 +32,10 @@
         <div>
             <input type="submit" class="btn-sm btn-primary btn-block" value="Ok"/>
         </div>
+
     </form:form>
+
+    <a href="/registration">Register</a>
 
 
 </div>
