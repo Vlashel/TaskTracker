@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- table 'userroles`
 CREATE TABLE IF NOT EXISTS `user_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
+  `userId` bigint(20) NOT NULL,
   `roleId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKUserRolesUserID` (`userId`),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS tasks (
   finishedDate DATETIME,
   user_id bigint(20) NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES USERS(ID) ON DELETE CASCADE
+  CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES users(ID) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1;
 
 -- table `roles`
@@ -49,7 +49,6 @@ ALTER TABLE `user_roles`
   ADD CONSTRAINT `FKUserRolesUserID` FOREIGN KEY (`userId`) REFERENCES `users` (`ID`) ON DELETE CASCADE;
 
 
- ALTER TABLE tasks ADD CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES USERS(ID) ON DELETE CASCADE;
 
 
 

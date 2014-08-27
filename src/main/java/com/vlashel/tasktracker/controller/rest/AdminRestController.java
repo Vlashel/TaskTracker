@@ -47,7 +47,6 @@ public class AdminRestController {
             userRestDto.setTasks(taskIds);
 
             userRestDtos.add(userRestDto);
-
         }
 
         return userRestDtos;
