@@ -35,7 +35,9 @@
 
     </form:form>
 
-    <a href="/registration">Register</a>
+    <spring:url value="registration" var="regurl"/>
+
+    <a href="${regurl}">Register</a>
 
 
 </div>

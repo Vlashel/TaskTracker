@@ -53,7 +53,7 @@
                         </td>
 
                         <td>
-                            <spring:url value="/task/${task.id}" var="viewUrl"/>
+                            <spring:url value="task/${task.id}" var="viewUrl"/>
                             <a href="${viewUrl}" class="btn btn-primary " role="button">View</a>
                         </td>
 
@@ -61,7 +61,7 @@
 
 
 
-                            <spring:url value="/finish-task/${task.id}" var="finishUrl"/>
+                            <spring:url value="finish-task/${task.id}" var="finishUrl"/>
 
                             <c:choose>
 
@@ -80,7 +80,7 @@
 
                         <td>
 
-                            <spring:url value="/delete-task/${task.id}" var="deleteUrl"/>
+                            <spring:url value="delete-task/${task.id}" var="deleteUrl"/>
 
                             <a href="${deleteUrl}" class="btn btn-danger " role="button">Delete</a>
 

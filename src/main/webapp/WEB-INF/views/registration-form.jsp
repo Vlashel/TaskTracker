@@ -14,9 +14,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" pageEncoding="UTF-8" %>
 
+<spring:url value="registration"  var="url"/>
 
 <div class="container">
-    <form:form method="post" action="/registration" modelAttribute="userDto" cssClass="form-signin">
+    <form:form method="post" action="${url}" modelAttribute="userDto" cssClass="form-signin">
         <legend class="text-info">Registration:</legend>
 
         <div>
