@@ -22,7 +22,7 @@ public class User {
     private final Date registrationDate = new Date();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user" , fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Task> tasks = new ArrayList<Task>();
+    private List<Task> tasks = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="user_roles",
@@ -31,10 +31,7 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
-    public User() {
-
-
-    }
+    public User() {}
 
     public Long getId() {
         return id;
@@ -85,7 +82,8 @@ public class User {
     }
 
     public void addTask(Task task) {
-        this.tasks.add(task);
+        task.setUser(this);
+        tasks.add(task);
     }
 
     public String toString() {

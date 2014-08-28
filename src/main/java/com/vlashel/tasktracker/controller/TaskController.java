@@ -65,7 +65,7 @@ public class TaskController {
         User user = userService.getCurrentUser();
 
         if (user == null) {
-            return "redirect:/login";
+            return "forward:/login";
         }
 
         Long id = user.getId();

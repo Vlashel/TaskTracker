@@ -34,7 +34,6 @@ public class RestTaskDto {
     }
 
     public Date getCreatedDate() {
-
         return createdDate;
     }
 

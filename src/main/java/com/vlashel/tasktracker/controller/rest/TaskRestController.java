@@ -59,19 +59,12 @@ public class TaskRestController {
 
             restTaskDtoList.add(restTaskDto);
         }
-
-
-
         return restTaskDtoList;
-
     }
 
     @RequestMapping(value = "/delete-task/{id}", method = RequestMethod.DELETE)
     public void deleteTask(@PathVariable Long id) {
-
         taskDao.deleteTask(id);
-
-
     }
     @RequestMapping(value = "/finish-task/{id}", method = RequestMethod.PUT)
     public void updateFinishedTask(@PathVariable Long id) {
