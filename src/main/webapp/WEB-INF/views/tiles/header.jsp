@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="navbar navbar-default navbar-fixed-top" roles="navigation">
@@ -40,7 +41,20 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${logurl}"> Logout </a></li>
+
+
+                    <li>
+                        <form action="${logurl}" method="POST">
+                            <button class="btn btn-link">Logout</button>
+
+
+                            <input type="hidden"
+                                   name="${_csrf.parameterName}"
+                                   value="${_csrf.token}"/>
+
+
+                        </form>
+                    </li>
                 </ul>
             </div>
         </sec:authorize>

@@ -1,6 +1,7 @@
 package com.vlashel.tasktracker.service;
 
 import com.vlashel.tasktracker.dao.UserDao;
+import com.vlashel.tasktracker.dao.UserDaoHibernateImpl;
 import com.vlashel.tasktracker.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

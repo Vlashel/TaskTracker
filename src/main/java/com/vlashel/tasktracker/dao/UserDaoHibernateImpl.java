@@ -1,12 +1,15 @@
 package com.vlashel.tasktracker.dao;
 
 import com.vlashel.tasktracker.model.User;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +28,7 @@ import java.util.Set;
 @Transactional
 public class UserDaoHibernateImpl implements UserDao {
     @Autowired
+    @Qualifier("sessionFactory")
     private SessionFactory sessionFactory;
 
     @Override
@@ -35,6 +39,8 @@ public class UserDaoHibernateImpl implements UserDao {
         criteria.add(Restrictions.eq("id", id));
 
         return (User) criteria.uniqueResult();
+        
+       
     }
 
     @Override
@@ -65,6 +71,10 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public User getUserByName(String name) {
 
+        if (sessionFactory == null) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SESSION FACTORY IS NULL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("name", name));
@@ -74,6 +84,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
+
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
 

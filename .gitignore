@@ -1,2 +1,5 @@
 /target
 *.dll
+.classpath
+.project
+/.settings

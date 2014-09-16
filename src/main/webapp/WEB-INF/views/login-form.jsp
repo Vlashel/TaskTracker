@@ -5,7 +5,9 @@
 
 <div id="login" class="container">
 
-    <form:form method="post" action="j_spring_security_check" cssClass="form-signin">
+    <spring:url value="/login" var="login"/>
+
+    <form:form method="post" action="${login}" cssClass="form-signin">
         <legend class="text-info">Type login and password</legend>
 
         <div>
@@ -32,6 +34,10 @@
         <div>
             <input type="submit" class="btn-sm btn-primary btn-block" value="Ok"/>
         </div>
+
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
 
     </form:form>
 
