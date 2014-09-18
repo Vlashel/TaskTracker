@@ -16,7 +16,7 @@ public class LoginController {
     public String getLoginPage() {
         return "login-form";
     }
-    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+    @RequestMapping(value = "/login-failed", method = RequestMethod.GET)
     public String getLoginPageFailure(Model model) {
         model.addAttribute("message", "Incorrect name or password");
         return "login-form";

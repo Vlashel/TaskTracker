@@ -1,8 +1,6 @@
 package com.vlashel.tasktracker.configuration;
 
 import org.springframework.context.annotation.Bean;
-
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -10,17 +8,16 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-
 import java.util.Properties;
 
 /**
  * @author Vladyslav Shelest
  * @version 1.0
- * @since 15.09.2014
+ * @since 17.09.2014
  */
 @Configuration
 @EnableTransactionManagement
-public class DatabaseContext {
+public class TestDatabaseContext {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

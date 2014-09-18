@@ -1,12 +1,8 @@
 package com.vlashel.tasktracker.configuration;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,12 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * @author Vladyslav Shelest
  * @version 1.0
- * @since 15.09.2014
+ * @since 17.09.2014
  */
-
 @Configuration
 @EnableWebSecurity
-public class SecurityContext extends WebSecurityConfigurerAdapter {
+public class TestSecurityContext extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService customUserDetailsService;
@@ -44,9 +39,9 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                 .antMatchers("/task-list").access("hasRole('ROLE_USER')")
                 .antMatchers("/").permitAll()
                 .and().formLogin()
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                .loginPage("/login")
+                .usernameParameter("j_username") // default is username
+                .passwordParameter("j_password") // default is password
+                .loginPage("/login") // default is /login with an HTTP get
                 .failureUrl("/login-failed")
                 .and()
                 .logout()
