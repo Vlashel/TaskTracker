@@ -14,7 +14,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>com.vlashel.tasktracker.configuration.RootContext,
-            com.vlashel.tasktracker.configuration.DataBaseContext,
+            com.vlashel.tasktracker.configuration.RepositoryContext,
             com.vlashel.tasktracker.configuration.SecurityContext
         </param-value>
     </context-param>
