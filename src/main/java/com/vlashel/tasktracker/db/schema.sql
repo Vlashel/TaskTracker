@@ -49,49 +49,5 @@ ALTER TABLE `user_roles`
   ADD CONSTRAINT `FKUserRolesUserID` FOREIGN KEY (`userId`) REFERENCES `users` (`ID`) ON DELETE CASCADE;
 
 
-create table customers (
-
-  id int(8) not null auto_increment,
-  first_name varchar(255) not null,
-  last_name varchar(255) not null,
-  primary key (id)
-
-);
-
-create table orders (
-  id int(8) not null auto_increment,
-  item varchar(255) not null,
-  customer_id int (8) not null,
-  primary key (id),
-  constraint customer_fk foreign key (customer_id) references customers(id) on delete CASCADE
-);
-
-insert into customers (first_name, last_name) values ('Nik', 'Davis');
-insert into orders (customer_id, item) values (3, 'pen');
-
-
- select customers.first_name, orders.item
- from customers, orders
- where customers.id = orders.customer_id;
-
-select customers.first_name, orders.id
-from customers
-  join orders
-  on customers.id = orders.customer_id;
-
-
-select customers.first_name, orders.id
-from customers
- left join orders
-    on customers.id = orders.customer_id;
-
-
-
-select customers.first_name, orders.item
-    from customers
-    full outer join orders
-    on customers.id = orders.customer_id
-    order by customers.first_name;
-
 
 

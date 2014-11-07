@@ -18,9 +18,10 @@ import java.util.Properties;
  * @version 1.0
  * @since 15.09.2014
  */
+
 @Configuration
 @EnableTransactionManagement
-public class DatabaseContext {
+public class DataBaseContext {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
